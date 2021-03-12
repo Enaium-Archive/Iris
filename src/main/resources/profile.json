@@ -1,0 +1,30 @@
+{
+  "inheritsFrom": "1.16.5",
+  "id": "${name}-${version}",
+  "jar": "1.16.5",
+  "time": "${formattedTime}",
+  "type": "release",
+  "arguments": {
+    "game": [
+      "--tweakClass",
+      "${group}.${id}.launch.ClientTweaker"
+    ]
+  },
+  "mainClass": "net.minecraft.launchwrapper.Launch",
+  "libraries": [
+    {
+      "name": "${group}:${name}:${version}"
+    },
+    {
+      "name": "net.minecraft:launchwrapper:1.12"
+    },
+    {
+      "name": "cn.enaium.cf4m:cf4m:${cf4mVersion}",
+      "url": "https://maven.enaium.cn/"
+    },
+    {
+      "name": "org.ow2.asm:asm-all:5.2",
+      "url": "https://repo1.maven.org/maven2/"
+    }
+  ]
+}
