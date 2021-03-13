@@ -16,7 +16,7 @@ import static org.objectweb.asm.Opcodes.*;
  * Copyright © 2020-2021 | Enaium | All rights reserved.
  */
 public class GuiHook extends Hook {
-    protected GuiHook() {
+    public GuiHook() {
         super(Mapping.net_minecraft_client_gui_Gui);
     }
 
@@ -42,10 +42,11 @@ public class GuiHook extends Hook {
                             mv.visitTypeInsn(NEW, Type.getInternalName(Render2DEvent.class));
                             mv.visitInsn(DUP);
 
-                            //new RenderEvent()
-                            mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(Render2DEvent.class), "<init>", "()V", false);
+                            //new RenderEvent(poseStack)
+                            mv.visitVarInsn(ALOAD, 1);//var1
+                            mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(Render2DEvent.class), "<init>", "(Ljava/lang/Object;)V", false);
 
-                            //new Render2DEvent().call()
+                            //new Render2DEvent(poseStack).call()
                             mv.visitMethodInsn(INVOKEVIRTUAL, Type.getInternalName(Render2DEvent.class), "call", "()V", false);
                         }
                         super.visitCode();

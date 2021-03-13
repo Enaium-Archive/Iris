@@ -1,5 +1,7 @@
 package cn.enaium.iris.utils;
 
+import org.objectweb.asm.Type;
+
 /**
  * Project: Iris
  * -----------------------------------------------------------
@@ -12,6 +14,7 @@ public class Mapping {
     public static String net_minecraft_client_Minecraft_run = getName(net_minecraft_client_Minecraft, "e");
     public static String net_minecraft_client_Minecraft_run_desc = getDesc(net_minecraft_client_Minecraft_run, "()V");
     public static String net_minecraft_client_Minecraft_player = getName(net_minecraft_client_Minecraft, "s");
+    public static String net_minecraft_client_Minecraft_font = getName(net_minecraft_client_Minecraft, "g");
     public static String net_minecraft_client_player_LocalPlayer = "dzm";
     public static String net_minecraft_client_player_LocalPlayer_tick = getName(net_minecraft_client_player_LocalPlayer, "j");
     public static String net_minecraft_client_player_LocalPlayer_tick_desc = getDesc(net_minecraft_client_player_LocalPlayer_tick, "()V");
@@ -23,6 +26,14 @@ public class Mapping {
     public static String net_minecraft_client_gui_Gui = "dkv";
     public static String net_minecraft_client_gui_Gui_render = getName(net_minecraft_client_gui_Gui, "a");
     public static String net_minecraft_client_gui_Gui_render_desc = getDesc(net_minecraft_client_gui_Gui_render, "(Ldfm;F)V");
+    public static String com_mojang_blaze3d_vertex_PoseStack = "dfm";
+    public static String net_minecraft_client_gui_Font = "dku";
+    public static String net_minecraft_client_gui_Font_draw = getName(net_minecraft_client_gui_Font, "b");
+    public static String net_minecraft_client_gui_Font_draw_desc = getDesc(net_minecraft_client_gui_Font_draw,
+            "L" + com_mojang_blaze3d_vertex_PoseStack + ";" + Type.getDescriptor(String.class) + "FFI");
+    public static String net_minecraft_client_gui_Font_drawShadow = getName(net_minecraft_client_gui_Font, "a");
+    public static String net_minecraft_client_gui_Font_drawShadow_desc = getDesc(net_minecraft_client_gui_Font_drawShadow,
+            "L" + com_mojang_blaze3d_vertex_PoseStack + ";" + Type.getDescriptor(String.class) + "FFI");
 
 
     private static String getName(String type, String name) {

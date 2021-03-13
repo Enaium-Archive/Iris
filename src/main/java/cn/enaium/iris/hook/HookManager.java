@@ -1,5 +1,6 @@
 package cn.enaium.iris.hook;
 
+import cn.enaium.iris.hook.hooks.GuiHook;
 import cn.enaium.iris.hook.hooks.KeyboardHandlerHook;
 import cn.enaium.iris.hook.hooks.LocalPlayer;
 import cn.enaium.iris.hook.hooks.MinecraftHook;
@@ -23,6 +24,7 @@ public class HookManager {
         hooks.add(new MinecraftHook());
         hooks.add(new LocalPlayer());
         hooks.add(new KeyboardHandlerHook());
+        hooks.add(new GuiHook());
     }
 
     public byte[] hook(String name, byte[] basicClass) {
