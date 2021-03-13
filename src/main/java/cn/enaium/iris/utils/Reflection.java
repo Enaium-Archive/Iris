@@ -26,4 +26,11 @@ public class Reflection {
         String fieldName = name.split("\\.")[1];
         return (T) Class.forName(className).getField(fieldName).get(object);
     }
+
+    public static void setValue(Object object, String name, Object value) throws ClassNotFoundException, IllegalAccessException, NoSuchFieldException {
+        String className = name.split("\\.")[0];
+        String fieldName = name.split("\\.")[1];
+        Class.forName(className).getField(fieldName).set(object, value);
+    }
+
 }

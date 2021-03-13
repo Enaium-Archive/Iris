@@ -16,5 +16,10 @@ public enum Iris {
 
     public void run() {
         CF4M.INSTANCE.run(this);
+        try {
+            Class.forName("ScreenManager").newInstance();
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

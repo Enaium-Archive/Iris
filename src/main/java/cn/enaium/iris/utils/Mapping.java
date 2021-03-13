@@ -13,8 +13,11 @@ public class Mapping {
     public static String net_minecraft_client_Minecraft_getInstance_desc = getDesc(net_minecraft_client_Minecraft_getInstance, "()V");
     public static String net_minecraft_client_Minecraft_run = getName(net_minecraft_client_Minecraft, "e");
     public static String net_minecraft_client_Minecraft_run_desc = getDesc(net_minecraft_client_Minecraft_run, "()V");
+    public static String net_minecraft_client_Minecraft_setScreen = getName(net_minecraft_client_Minecraft, "a");
+    public static String net_minecraft_client_Minecraft_setScreen_desc = getDesc(net_minecraft_client_Minecraft_setScreen, "(Ldot;)V");
     public static String net_minecraft_client_Minecraft_player = getName(net_minecraft_client_Minecraft, "s");
     public static String net_minecraft_client_Minecraft_font = getName(net_minecraft_client_Minecraft, "g");
+    public static String net_minecraft_client_Minecraft_screen = getName(net_minecraft_client_Minecraft, "y");
     public static String net_minecraft_client_player_LocalPlayer = "dzm";
     public static String net_minecraft_client_player_LocalPlayer_tick = getName(net_minecraft_client_player_LocalPlayer, "j");
     public static String net_minecraft_client_player_LocalPlayer_tick_desc = getDesc(net_minecraft_client_player_LocalPlayer_tick, "()V");
