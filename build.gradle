@@ -52,7 +52,6 @@ dependencies {
     implementation ('org.lwjgl:lwjgl-stb:3.2.2')
     implementation ('org.lwjgl:lwjgl-tinyfd:3.2.2')
     implementation ('org.lwjgl:lwjgl:3.2.2')
-    implementation ('org.lwjgl:lwjgl-opengl:3.2.2')
     implementation ('com.mojang:text2speech:1.11.3')
     implementation ('ca.weblite:java-objc-bridge:1.0.0')
 }
