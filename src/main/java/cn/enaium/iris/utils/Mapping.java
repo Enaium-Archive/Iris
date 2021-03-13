@@ -15,6 +15,8 @@ public class Mapping {
     public static String net_minecraft_client_Minecraft_run_desc = getDesc(net_minecraft_client_Minecraft_run, "()V");
     public static String net_minecraft_client_Minecraft_setScreen = getName(net_minecraft_client_Minecraft, "a");
     public static String net_minecraft_client_Minecraft_setScreen_desc = getDesc(net_minecraft_client_Minecraft_setScreen, "(Ldot;)V");
+    public static String net_minecraft_client_Minecraft_updateTitle = getName(net_minecraft_client_Minecraft, "c");
+    public static String net_minecraft_client_Minecraft_updateTitleDesc = getDesc(net_minecraft_client_Minecraft_updateTitle, "()V");
     public static String net_minecraft_client_Minecraft_player = getName(net_minecraft_client_Minecraft, "s");
     public static String net_minecraft_client_Minecraft_font = getName(net_minecraft_client_Minecraft, "g");
     public static String net_minecraft_client_Minecraft_screen = getName(net_minecraft_client_Minecraft, "y");

@@ -1,10 +1,9 @@
 package cn.enaium.iris.hook.hooks;
 
-import cn.enaium.cf4m.CF4M;
 import cn.enaium.iris.Iris;
-import cn.enaium.iris.events.SetScreenEvent;
 import cn.enaium.iris.hook.Hook;
 import cn.enaium.iris.utils.Mapping;
+import cn.enaium.iris.utils.Reflection;
 import org.objectweb.asm.*;
 
 import static org.objectweb.asm.Opcodes.*;
@@ -43,12 +42,18 @@ public class MinecraftHook extends Hook {
                             //Iris.INSTANCE.run()
                             mv.visitMethodInsn(INVOKEVIRTUAL, Type.getInternalName(Iris.class), "run", "()V", false);
                         }
-
-                        if ((className + "." + name + desc).equals(Mapping.net_minecraft_client_Minecraft_setScreen_desc)) {
-                            mv.visitVarInsn(ALOAD, 1);
-                            mv.visitMethodInsn(INVOKESTATIC, Type.getInternalName(MinecraftHook.class), "setScreen", "(Ljava/lang/Object;)V", false);
-                        }
                         super.visitCode();
+                    }
+
+                    @Override
+                    public void visitMethodInsn(int opcode, String owner, String name1, String desc1, boolean itf) {
+                        if ((className + "." + name + desc).equals(Mapping.net_minecraft_client_Minecraft_setScreen_desc)) {
+                            if (opcode == INVOKEVIRTUAL && (owner + "." + name1 + desc1).equals(Mapping.net_minecraft_client_Minecraft_updateTitleDesc)) {
+//                                mv.visitVarInsn(ALOAD, 1);
+//                                mv.visitMethodInsn(INVOKESTATIC, Type.getInternalName(MinecraftHook.class), "setScreen", "(Ljava/lang/Object;)V", false);
+                            }
+                        }
+                        super.visitMethodInsn(opcode, owner, name1, desc1, itf);
                     }
                 };
             }
@@ -56,8 +61,13 @@ public class MinecraftHook extends Hook {
     }
 
     public static void setScreen(Object o) {
-        if (CF4M.INSTANCE.event != null && o != null) {
-            new SetScreenEvent(o).call();
+        try {
+            if (o.getClass() == Class.forName("doy")) {
+                Object minecraft = Reflection.getMethod(Mapping.net_minecraft_client_Minecraft_getInstance).invoke(null);
+                Reflection.setValue(minecraft, Mapping.net_minecraft_client_Minecraft_screen, Class.forName("IrisScreen").newInstance());
+                System.out.println(Reflection.<Object>getValue(minecraft, Mapping.net_minecraft_client_Minecraft_screen));
+            }
+        } catch (Exception ignored) {
         }
     }
 }
