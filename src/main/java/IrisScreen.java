@@ -1,5 +1,5 @@
-import cn.enaium.iris.Iris;
-import cn.enaium.iris.utils.FontUtils;
+import cn.enaium.iris.client.Iris;
+import cn.enaium.iris.client.utils.FontUtils;
 import org.lwjgl.opengl.GL11;
 
 /**

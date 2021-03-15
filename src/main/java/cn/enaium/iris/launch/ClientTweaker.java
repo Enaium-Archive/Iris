@@ -2,9 +2,15 @@ package cn.enaium.iris.launch;
 
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.spongepowered.asm.launch.MixinBootstrap;
+import org.spongepowered.asm.launch.MixinTransformationService;
+import org.spongepowered.asm.launch.MixinTweaker;
+import org.spongepowered.asm.mixin.MixinEnvironment;
+import org.spongepowered.asm.mixin.Mixins;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,7 +40,7 @@ public class ClientTweaker implements ITweaker {
 
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
-        classLoader.registerTransformer("cn.enaium.iris.launch.ClassTransformer");
+        MixinBootstrap.init();
     }
 
     @Override

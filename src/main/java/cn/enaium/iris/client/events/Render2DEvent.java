@@ -1,4 +1,4 @@
-package cn.enaium.iris.events;
+package cn.enaium.iris.client.events;
 
 import cn.enaium.cf4m.event.Listener;
 

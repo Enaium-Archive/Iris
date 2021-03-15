@@ -1,4 +1,4 @@
-package cn.enaium.iris;
+package cn.enaium.iris.client;
 
 import cn.enaium.cf4m.CF4M;
 
