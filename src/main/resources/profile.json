@@ -1,7 +1,7 @@
 {
-  "inheritsFrom": "1.16.5",
+  "inheritsFrom": "${mcVersion}",
   "id": "${name}-${version}",
-  "jar": "1.16.5",
+  "jar": "${mcVersion}",
   "time": "${formattedTime}",
   "type": "release",
   "arguments": {

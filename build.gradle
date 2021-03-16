@@ -1,12 +1,12 @@
 plugins {
     id 'java'
-    id 'org.spongepowered.plugin' version '0.9.0'
 }
 
 group 'cn.enaium'
 version '1.0'
 def id = "iris"
 def cf4mVersion = "1.5.2"
+def mcVersion = "21w10a"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ dependencies {
     implementation("org.ow2.asm:asm-util:6.2")
     implementation('cn.enaium.cf4m:cf4m:1.5.2') { transitive = false }
 
-    implementation files("./libs/1.16.5.jar")
+    implementation files("./libs/${mcVersion}_deobf.jar")
 
     implementation('com.mojang:patchy:1.1')
     implementation('oshi-project:oshi-core:1.1')
@@ -68,6 +68,7 @@ processResources {
                 'name'         : rootProject.name,
                 'group'        : project.group,
                 'id'           : "${id}",
+                "mcVersion"    : "${mcVersion}",
                 'cf4mVersion'  : "${cf4mVersion}",
                 'formattedTime': new Date().format("yyyy-MM-dd'T'HH:mm:ss'-08:00'")
         ])

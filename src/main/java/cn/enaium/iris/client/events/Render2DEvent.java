@@ -1,6 +1,7 @@
 package cn.enaium.iris.client.events;
 
 import cn.enaium.cf4m.event.Listener;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 /**
  * Project: Iris
@@ -9,14 +10,14 @@ import cn.enaium.cf4m.event.Listener;
  */
 public class Render2DEvent extends Listener {
 
-    private final Object poseStack;
+    private final PoseStack poseStack;
 
-    public Render2DEvent(Object poseStack) {
+    public Render2DEvent(PoseStack poseStack) {
         super(At.NONE);
         this.poseStack = poseStack;
     }
 
-    public Object getPoseStack() {
+    public PoseStack getPoseStack() {
         return poseStack;
     }
 }

@@ -1,0 +1,17 @@
+{
+  "mappings": {
+    "cn/enaium/iris/mixins/MinecraftMixin": {
+      "run()V": "Ldse;e()V"
+    },
+    "cn/enaium/iris/mixins/KeyboardHandlerMixin": {
+      "keyPress(JIIII)V": "Ldsc;a(JIIII)V"
+    },
+    "cn/enaium/iris/mixins/GuiMixin": {
+      "render(Lcom/mojang/blaze3d/vertex/PoseStack;F)V": "Ldta;a(Ldnl;F)V"
+    },
+    "cn/enaium/iris/mixins/LocalPlayerMixin": {
+      "tick()V": "Leiq;j()V",
+      "chat(Ljava/lang/String;)V": "Leiq;e(Ljava/lang/String;)V"
+    }
+  }
+}

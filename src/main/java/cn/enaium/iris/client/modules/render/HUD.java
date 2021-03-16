@@ -3,9 +3,8 @@ package cn.enaium.iris.client.modules.render;
 import cn.enaium.cf4m.annotation.Event;
 import cn.enaium.cf4m.annotation.module.Module;
 import cn.enaium.cf4m.module.Category;
-import cn.enaium.iris.client.Iris;
 import cn.enaium.iris.client.events.Render2DEvent;
-import cn.enaium.iris.client.utils.FontUtils;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -17,6 +16,6 @@ import org.lwjgl.glfw.GLFW;
 public class HUD {
     @Event
     public void onRender(Render2DEvent event) {
-        FontUtils.getInstance().drawShadow(event.getPoseStack(), Iris.INSTANCE.NAME, 0, 0, 0xFFFFFF);
+        Minecraft.getInstance().font.draw(event.getPoseStack(), "Text", 1, 1, 0xFFFFFF);
     }
 }
