@@ -18,6 +18,6 @@ public class MinecraftMixin {
     @ReMap("run()V")
     @Inject(at = @At("HEAD"), method = "run()V")
     public void run(CallbackInfo callbackInfo) {
-
+        Iris.INSTANCE.run();
     }
 }
