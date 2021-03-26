@@ -41,6 +41,7 @@ public class ClientTweaker implements ITweaker {
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         MixinBootstrap.init();
+        Mixins.addConfiguration("mixin.iris.json");
     }
 
     @Override

@@ -1,16 +1,36 @@
-plugins {
-    id 'java'
-    id "net.ltgt.apt-idea" version "0.21"
+import cn.enaium.sma.SMA
+import cn.enaium.sma.utils.FileUtils
+import cn.enaium.transform.ITransform
+import cn.enaium.sma.SrgMappingAnalyze
+
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2' }
+        maven { url 'https://maven.enaium.cn' }
+    }
+
+    dependencies {
+        classpath "cn.enaium:transform:1.2"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.21"
+        classpath "cn.enaium:SrgMappingAnalyze:0.3"
+
+    }
 }
+
+apply plugin: "java"
+apply plugin: "net.ltgt.apt-idea"
+apply plugin: "cn.enaium.transform"
 
 group 'cn.enaium'
 version '1.0'
 def id = "iris"
 def cf4mVersion = "1.5.2"
-def mcVersion = "21w10a"
+def mcVersion = "21w11a"
+def mapping = new File(System.getProperty("user.dir"), "mapping/${mcVersion}_srg.txt").getPath()
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
     maven { url 'https://libraries.minecraft.net/' }
     maven { url 'https://maven.enaium.cn/' }
     maven { url 'https://repo.spongepowered.org/maven' }
@@ -24,9 +44,8 @@ dependencies {
     implementation('org.ow2.asm:asm-util:6.2')
     implementation('cn.enaium.cf4m:cf4m:1.5.2') { transitive = false }
 
-    implementation files("./libs/${mcVersion}_deobf.jar")
-    annotationProcessor('cn.enaium:SrgMappingAnalyze:0.1')
-    implementation('cn.enaium:SrgMappingAnalyze:0.1')
+    compileOnly files("./libs/${mcVersion}_DeObf.jar")
+    implementation annotationProcessor('cn.enaium:SrgMappingAnalyze:0.3')
 
     implementation('com.mojang:patchy:1.1')
     implementation('oshi-project:oshi-core:1.1')
@@ -64,8 +83,24 @@ dependencies {
     implementation('ca.weblite:java-objc-bridge:1.0.0')
 }
 
+transformTask {
+    SMA.INSTANCE.parseMapping(FileUtils.read(mapping))
+    SrgMappingAnalyze.putRemap(false)
+}
+
+transformExtend {
+    transform = new ITransform() {
+        @Override
+        byte[] transform(byte[] basic) {
+            return SrgMappingAnalyze.accept(basic)
+        }
+    }
+}
+
+compileJava.finalizedBy(transformTask)
+
 compileJava {
-    options.compilerArgs << "-Acn.enaium.sma.SrgMapping=C:/Users/Enaium/Desktop/21w10aMapping_to_srg.txt"
+    options.compilerArgs << "-Acn.enaium.sma.SrgMapping=$mapping"
     options.compilerArgs << "-Acn.enaium.sma.refmap=mixins.iris.refmap.json"
 }
 
@@ -93,9 +128,7 @@ jar {
                 "Implementation-Title"    : "${rootProject.name}",
                 "Implementation-Version"  : "${project.version}",
                 "Implementation-Vendor"   : "${project.group}",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'TweakClass'              : 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs'            : "mixin.${id}.json",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
