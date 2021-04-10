@@ -16,6 +16,6 @@ import org.lwjgl.glfw.GLFW;
 public class HUD {
     @Event
     public void onRender(Render2DEvent event) {
-        Minecraft.getInstance().font.draw(event.getPoseStack(), "Text", 1, 1, 0xFFFFFF);
+        Minecraft.getInstance().font.draw(event.getPoseStack(), "Enaium No.1", 1, 1, 0xFFFFFFFF);
     }
 }
