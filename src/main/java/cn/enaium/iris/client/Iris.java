@@ -17,7 +17,7 @@ public enum Iris {
 
     public void run() {
         System.out.println("Iris Loading...");
-        CF4M.INSTANCE.run(this);
+        CF4M.run(this);
         System.out.println("Iris Loaded...");
     }
 }

@@ -2,10 +2,11 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url 'https://maven.enaium.cn' }
+        maven { url 'https://maven.fabricmc.net' }
     }
 
     dependencies {
-        classpath 'cn.enaium:ml4g:1.0.1'
+        classpath 'cn.enaium:ml4g:1.0.11'
     }
 }
 
@@ -15,8 +16,8 @@ apply plugin: 'ml4g'
 group 'cn.enaium'
 version '1.0'
 def id = "iris"
-def cf4mVersion = "1.5.2"
-def mcVersion = "21w14a"
+def cf4mVersion = "1.9.6"
+def mcVersion = "1.17"
 
 minecraft {
     gameVersion = mcVersion
@@ -31,13 +32,14 @@ repositories {
 
 dependencies {
     implementation("cn.enaium.cf4m:cf4m:${cf4mVersion}")
-    implementation('org.spongepowered:mixin:0.8.2')
+    implementation('net.fabricmc:sponge-mixin:0.9.4+mixin.0.8.2')
+//    implementation('org.spongepowered:mixin:0.8.2') Not support jdk11+
     implementation('com.google.guava:guava:30.1-jre')
     implementation('com.google.code.gson:gson:2.8.6')
     implementation('org.ow2.asm:asm-tree:9.1')
     implementation('org.ow2.asm:asm-commons:9.1')
     implementation('org.ow2.asm:asm-util:9.1')
-    implementation('net.minecraft:launchwrapper:1.12') { transitive(false) }
+    implementation('net.minecraft:launchwrapper:1.12') { transitive(false) }//Not support jdk11+
 }
 processResources {
     filesMatching('profile.json') {
